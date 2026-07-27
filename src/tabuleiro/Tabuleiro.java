@@ -37,6 +37,13 @@ public class Tabuleiro {
         throw new IndexOutOfBoundsException("Posição inválida no tabuleiro!");
     }
 
+    public void mover(Casa origem, Casa destino) {
+        Peca peca = origem.getPeca();
+
+        origem.removerPeca();
+        destino.colocarPeca(peca);
+    }
+
     public boolean simularMovimento(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
         return true;
     }

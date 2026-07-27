@@ -16,14 +16,6 @@ public class Cavaleiro implements Peca {
     }
 
     @Override
-    public void mover(int linhaAlvo, int colunaAlvo) {
-        if (linhaAlvo == colunaAlvo && (linhaAlvo != this.linha && colunaAlvo != this.coluna)) {
-            this.linha = linhaAlvo;
-            this.coluna = colunaAlvo;
-        }
-    }
-
-    @Override
     public Cor getCor() {
         return cor;
     }
