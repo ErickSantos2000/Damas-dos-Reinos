@@ -2,6 +2,8 @@ package Peca.impl;
 
 import Peca.Peca;
 import Peca.Cor;
+import tabuleiro.Casa;
+
 public class Cavaleiro implements Peca {
     private int linha, coluna;
     private Cor cor;
@@ -24,6 +26,12 @@ public class Cavaleiro implements Peca {
     public Peca getTipo() {
         return null;
     }
+
+    @Override
+    public boolean regraMovimento(Casa origem, Casa destino) {
+        return true;
+    }
+
 
     public int getLinha() {
         return linha;

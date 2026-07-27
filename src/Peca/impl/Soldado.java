@@ -2,6 +2,7 @@ package Peca.impl;
 
 import Peca.Peca;
 import Peca.Cor;
+import tabuleiro.Casa;
 
 public class Soldado implements Peca {
 
@@ -25,6 +26,11 @@ public class Soldado implements Peca {
     @Override
     public Peca getTipo() {
         return null;
+    }
+
+    @Override
+    public boolean regraMovimento(Casa origem, Casa destino) {
+        return true;
     }
 
     public int getLinha() {
