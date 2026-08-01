@@ -3,6 +3,7 @@ package Peca.impl;
 import Peca.Peca;
 import Peca.Cor;
 import tabuleiro.Casa;
+import Peca.TipoPeca;
 
 public class Soldado implements Peca {
 
@@ -24,12 +25,17 @@ public class Soldado implements Peca {
     }
 
     @Override
-    public Peca getTipo() {
+    public TipoPeca getTipo() {
         return null;
     }
 
     @Override
-    public boolean regraMovimento(Casa origem, Casa destino) {
+    public boolean podeCapturar(Casa origem, Casa destino){
+        return true;
+    }
+
+    @Override
+    public boolean podeMover(Casa origem, Casa destino) {
         if (origem == null || destino == null || origem.equals(destino)) {
             return false;
         }

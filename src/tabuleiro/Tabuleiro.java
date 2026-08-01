@@ -20,11 +20,10 @@ public class Tabuleiro {
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
 
-                String coordenada = i + "," + j;
 
                 String corCasa = (i + j) % 2 == 0 ? "CLARA" : "ESCURA";
 
-                casas[i][j] = new Casa(corCasa, coordenada, null);
+                casas[i][j] = new Casa(corCasa, i, j, null);
             }
         }
     }

@@ -8,7 +8,7 @@ public class Casa {
     private int y;
     private Peca peca;
 
-    public Casa(String cor, String coordenada, Peca peca) {
+    public Casa(String cor, int x, int y, Peca peca) {
         this.cor = cor;
         this.x = x;
         this.y = y;
