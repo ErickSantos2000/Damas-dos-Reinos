@@ -30,7 +30,40 @@ public class Soldado implements Peca {
 
     @Override
     public boolean regraMovimento(Casa origem, Casa destino) {
-        return true;
+        if (origem == null || destino == null || origem.equals(destino)) {
+            return false;
+        }
+
+        int xOrigem = origem.getX();
+        int yOrigem = origem.getY();
+        int xDestino = destino.getX();
+        int yDestino = destino.getY();
+
+        int diferencaX = xDestino - xOrigem;
+        int diferencaY = yDestino - yOrigem;
+        int absX = Math.abs(diferencaX);
+        int absY = Math.abs(diferencaY);
+
+        boolean ehParaFrenteSimples = (this.getCor() == Cor.BRANCA && diferencaY == 1) ||
+                (this.getCor() == Cor.VERMELHA && diferencaY == -1);
+
+        if (absX == 1 && absY == 1 && ehParaFrenteSimples) {
+            return destino.getPeca() == null;
+        }
+
+        boolean ehParaFrenteSalto = (this.getCor() == Cor.BRANCA && diferencaY == 2) ||
+                (this.getCor() == Cor.VERMELHA && diferencaY == -2);
+
+        if (absX == 2 && absY == 2 && ehParaFrenteSalto) {
+
+            if (destino.getPeca() != null) {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public int getLinha() {

@@ -29,7 +29,25 @@ public class Mago implements Peca {
 
     @Override
     public boolean regraMovimento(Casa origem, Casa destino) {
-        return true;
+        if (origem == null || destino == null || origem.equals(destino)) {
+            return false;
+        }
+
+        int diferencaX = destino.getX() - origem.getX();
+        int diferencaY = destino.getY() - origem.getY();
+        int absX = Math.abs(diferencaX);
+        int absY = Math.abs(diferencaY);
+
+        if (absX == absY && absX > 0) {
+            if (destino.getPeca() == null) {
+                return true;
+            }
+            if (destino.getPeca().getCor() != this.getCor()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 

@@ -4,12 +4,14 @@ import Peca.Peca;
 
 public class Casa {
     private String cor;
-    private String coordenada;
+    private int x;
+    private int y;
     private Peca peca;
 
     public Casa(String cor, String coordenada, Peca peca) {
         this.cor = cor;
-        this.coordenada = coordenada;
+        this.x = x;
+        this.y = y;
         this.peca = peca;
     }
 
@@ -32,12 +34,20 @@ public class Casa {
         this.cor = cor;
     }
 
-    public String getCoordenada() {
-        return coordenada;
+    public int getX() {
+        return x;
     }
 
-    public void setCoordenada(String coordenada) {
-        this.coordenada = coordenada;
+    public int getY() {
+        return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public Peca getPeca() {
