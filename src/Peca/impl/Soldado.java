@@ -4,11 +4,13 @@ import Peca.Peca;
 import Peca.Cor;
 import tabuleiro.Casa;
 import Peca.TipoPeca;
+import tabuleiro.Tabuleiro;
 
 public class Soldado implements Peca {
 
     private int linha, coluna;
     private Cor cor;
+    private Tabuleiro tabuleiro;
 
     public Soldado(int linha, int coluna, Cor cor) {
         this.linha = linha;
@@ -31,45 +33,32 @@ public class Soldado implements Peca {
 
     @Override
     public boolean podeCapturar(Casa origem, Casa destino){
-        return true;
+        int dx = destino.getX() - origem.getX();
+        int dy = destino.getY() - origem.getY();
+
+        boolean avancarParaFrente = (cor == Cor.BRANCA && dy == 2) ||
+                                    (cor == Cor.VERMELHA && dy == -2);
+
+
+        int meioX = origem.getX() + (dx / 2);
+        int meioY = origem.getY() + (dy / 2);
+
+        Casa casaMeio = tabuleiro.getCasa(meioX, meioY);
+        boolean haInimigoNoMeio = casaMeio.possuiPecaInimiga(this.getCor());
+
+        return Math.abs(dx) == 2 && Math.abs(dy) == 2 && avancarParaFrente && haInimigoNoMeio && destino.getPeca() == null;
     }
 
     @Override
     public boolean podeMover(Casa origem, Casa destino) {
-        if (origem == null || destino == null || origem.equals(destino)) {
-            return false;
-        }
+        int dx = destino.getX() - origem.getX();
+        int dy = destino.getY() - origem.getY();
 
-        int xOrigem = origem.getX();
-        int yOrigem = origem.getY();
-        int xDestino = destino.getX();
-        int yDestino = destino.getY();
+        boolean avancarParaFrente =
+                (cor == Cor.BRANCA && dy == 1) ||
+                        (cor == Cor.VERMELHA && dy == -1);
 
-        int diferencaX = xDestino - xOrigem;
-        int diferencaY = yDestino - yOrigem;
-        int absX = Math.abs(diferencaX);
-        int absY = Math.abs(diferencaY);
-
-        boolean ehParaFrenteSimples = (this.getCor() == Cor.BRANCA && diferencaY == 1) ||
-                (this.getCor() == Cor.VERMELHA && diferencaY == -1);
-
-        if (absX == 1 && absY == 1 && ehParaFrenteSimples) {
-            return destino.getPeca() == null;
-        }
-
-        boolean ehParaFrenteSalto = (this.getCor() == Cor.BRANCA && diferencaY == 2) ||
-                (this.getCor() == Cor.VERMELHA && diferencaY == -2);
-
-        if (absX == 2 && absY == 2 && ehParaFrenteSalto) {
-
-            if (destino.getPeca() != null) {
-                return false;
-            }
-
-            return true;
-        }
-
-        return false;
+        return Math.abs(dx) == 1 && Math.abs(dy) == 1 && avancarParaFrente && destino.getPeca() == null;
     }
 
     public int getLinha() {

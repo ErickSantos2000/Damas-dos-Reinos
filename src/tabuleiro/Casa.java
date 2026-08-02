@@ -1,6 +1,7 @@
 package tabuleiro;
 
 import Peca.Peca;
+import Peca.Cor;
 
 public class Casa {
     private String cor;
@@ -24,6 +25,15 @@ public class Casa {
 
     public void colocarPeca(Peca peca) {
         this.peca = peca;
+    }
+
+    public boolean temPeca(){
+        if (this.peca != null) return true;
+        return false;
+    }
+
+    public boolean possuiPecaInimiga(Cor cor) {
+        return temPeca() && peca.getCor() != cor;
     }
 
     public String getCor() {

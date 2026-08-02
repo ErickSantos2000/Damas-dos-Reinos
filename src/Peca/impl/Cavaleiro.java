@@ -30,29 +30,22 @@ public class Cavaleiro implements Peca {
 
     @Override
     public boolean podeCapturar(Casa origem, Casa destino){
-        return true;
+        int dx = Math.abs(destino.getX() - origem.getX());
+        int dy = Math.abs(destino.getY() - origem.getY());
+
+        boolean movimentoL = (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
+
+        return movimentoL && destino.getPeca() != null && destino.getPeca().getCor() != this.getCor();
     }
 
     @Override
     public boolean podeMover(Casa origem, Casa destino) {
-        if (origem == null || destino == null || origem.equals(destino)) {
-            return false;
-        }
+        int dx = Math.abs(destino.getX() - origem.getX());
+        int dy = Math.abs(destino.getY() - origem.getY());
 
-        int absX = Math.abs(destino.getX() - origem.getX());
-        int absY = Math.abs(destino.getY() - origem.getY());
+        boolean movimentoL = (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
 
-        boolean ehMovimentoL = (absX == 2 && absY == 1) || (absX == 1 && absY == 2);
-
-        if (ehMovimentoL) {
-
-            if (destino.getPeca() == null) {
-                return true;
-            }
-            return destino.getPeca().getCor() != this.getCor();
-        }
-
-        return false;
+        return movimentoL && destino.getPeca() == null;
     }
 
 

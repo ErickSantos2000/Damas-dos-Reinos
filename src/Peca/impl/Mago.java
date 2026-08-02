@@ -4,10 +4,12 @@ import Peca.Peca;
 import Peca.Cor;
 import tabuleiro.Casa;
 import Peca.TipoPeca;
+import tabuleiro.Tabuleiro;
 
 public class Mago implements Peca {
     private int linha, coluna;
     private Cor cor;
+    private Tabuleiro tabuleiro;
 
     public Mago(int linha, int coluna, Cor cor) {
         this.linha = linha;
@@ -29,7 +31,43 @@ public class Mago implements Peca {
     }
 
     @Override
-    public boolean podeCapturar(Casa origem, Casa destino){
+    public boolean podeCapturar(Casa origem, Casa destino) {
+        if (origem == null || destino == null || origem.equals(destino)) {
+            return false;
+        }
+
+        if (destino.getPeca() == null) {
+            return false;
+        }
+
+        if (destino.getPeca().getCor() == this.getCor()) {
+            return false;
+        }
+
+        int dx = destino.getX() - origem.getX();
+        int dy = destino.getY() - origem.getY();
+
+        if (Math.abs(dx) != Math.abs(dy) || dx == 0) {
+            return false;
+        }
+
+        int passoX = Integer.compare(dx, 0);
+        int passoY = Integer.compare(dy, 0);
+
+        int x = origem.getX() + passoX;
+        int y = origem.getY() + passoY;
+
+        while (x != destino.getX() || y != destino.getY()) {
+            Casa casaAtual = tabuleiro.getCasa(x, y);
+
+            if (casaAtual.getPeca() != null) {
+                return false;
+            }
+
+            x += passoX;
+            y += passoY;
+        }
+
         return true;
     }
 
@@ -39,21 +77,31 @@ public class Mago implements Peca {
             return false;
         }
 
-        int diferencaX = destino.getX() - origem.getX();
-        int diferencaY = destino.getY() - origem.getY();
-        int absX = Math.abs(diferencaX);
-        int absY = Math.abs(diferencaY);
+        int dx = destino.getX() - origem.getX();
+        int dy = destino.getY() - origem.getY();
 
-        if (absX == absY && absX > 0) {
-            if (destino.getPeca() == null) {
-                return true;
-            }
-            if (destino.getPeca().getCor() != this.getCor()) {
-                return true;
-            }
+        if (Math.abs(dx) != Math.abs(dy) || dx == 0) {
+            return false;
         }
 
-        return false;
+        int passoX = Integer.compare(dx, 0);
+        int passoY = Integer.compare(dy, 0);
+
+        int x = origem.getX() + passoX;
+        int y = origem.getY() + passoY;
+
+        while (x != destino.getX() || y != destino.getY()) {
+            Casa casaAtual = tabuleiro.getCasa(x, y);
+
+            if (casaAtual.getPeca() != null) {
+                return false;
+            }
+
+            x += passoX;
+            y += passoY;
+        }
+
+        return destino.getPeca() == null;
     }
 
 
