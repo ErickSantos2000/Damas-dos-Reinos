@@ -8,13 +8,13 @@ import tabuleiro.Tabuleiro;
 
 public class Soldado implements Peca {
 
-    private int linha, coluna;
+    private int y, x;
     private Cor cor;
     private Tabuleiro tabuleiro;
 
-    public Soldado(int linha, int coluna, Cor cor) {
-        this.linha = linha;
-        this.coluna = coluna;
+    public Soldado(int y, int x, Cor cor) {
+        this.y = y;
+        this.x = x;
         this.cor = cor;
     }
 
@@ -28,7 +28,7 @@ public class Soldado implements Peca {
 
     @Override
     public TipoPeca getTipo() {
-        return null;
+        return TipoPeca.SOLDADO;
     }
 
     @Override
@@ -61,19 +61,19 @@ public class Soldado implements Peca {
         return Math.abs(dx) == 1 && Math.abs(dy) == 1 && avancarParaFrente && destino.getPeca() == null;
     }
 
-    public int getLinha() {
-        return linha;
+    public int getY() {
+        return y;
     }
 
-    public void setLinha(int linha) {
-        this.linha = linha;
+    public void setY(int y) {
+        this.y = y;
     }
 
-    public int getColuna() {
-        return coluna;
+    public int getX() {
+        return x;
     }
 
-    public void setColuna(int coluna) {
-        this.coluna = coluna;
+    public void setX(int x) {
+        this.x = x;
     }
 }

@@ -7,13 +7,13 @@ import Peca.TipoPeca;
 import tabuleiro.Tabuleiro;
 
 public class Mago implements Peca {
-    private int linha, coluna;
+    private int y, x;
     private Cor cor;
     private Tabuleiro tabuleiro;
 
-    public Mago(int linha, int coluna, Cor cor) {
-        this.linha = linha;
-        this.coluna = coluna;
+    public Mago(int y, int x, Cor cor) {
+        this.y = y;
+        this.x = x;
         this.cor = cor;
     }
 
@@ -27,7 +27,7 @@ public class Mago implements Peca {
 
     @Override
     public TipoPeca getTipo() {
-        return null;
+        return TipoPeca.MAGO;
     }
 
     @Override
@@ -105,19 +105,19 @@ public class Mago implements Peca {
     }
 
 
-    public int getLinha() {
-        return linha;
+    public int getY() {
+        return y;
     }
 
-    public void setLinha(int linha) {
-        this.linha = linha;
+    public void setY(int y) {
+        this.y = y;
     }
 
-    public int getColuna() {
-        return coluna;
+    public int getX() {
+        return x;
     }
 
-    public void setColuna(int coluna) {
-        this.coluna = coluna;
+    public void setX(int x) {
+        this.x = x;
     }
 }

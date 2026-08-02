@@ -6,12 +6,12 @@ import tabuleiro.Casa;
 import Peca.TipoPeca;
 
 public class Cavaleiro implements Peca {
-    private int linha, coluna;
+    private int y, x;
     private Cor cor;
 
-    public Cavaleiro(int linha, int coluna, Cor cor) {
-        this.linha = linha;
-        this.coluna = coluna;
+    public Cavaleiro(int y, int x, Cor cor) {
+        this.y = y;
+        this.x = x;
         this.cor = cor;
     }
 
@@ -25,7 +25,7 @@ public class Cavaleiro implements Peca {
 
     @Override
     public TipoPeca getTipo() {
-        return null;
+        return TipoPeca.CAVALEIRO;
     }
 
     @Override
@@ -49,19 +49,19 @@ public class Cavaleiro implements Peca {
     }
 
 
-    public int getLinha() {
-        return linha;
+    public int getY() {
+        return y;
     }
 
-    public void setLinha(int linha) {
-        this.linha = linha;
+    public void setY(int y) {
+        this.y = y;
     }
 
-    public int getColuna() {
-        return coluna;
+    public int getX() {
+        return x;
     }
 
-    public void setColuna(int coluna) {
-        this.coluna = coluna;
+    public void setX(int x) {
+        this.x = x;
     }
 }
