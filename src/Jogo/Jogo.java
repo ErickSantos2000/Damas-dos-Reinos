@@ -45,36 +45,31 @@ public class Jogo {
 
     private void inicializarPecas() {
         List<Peca> pecasBrancas = new ArrayList<>();
-        List<Peca> pecasPretas = new ArrayList<>();
+        List<Peca> pecasVermelhas = new ArrayList<>();
 
-        pecasBrancas.add(new Soldado(5, 1, Cor.BRANCA));
-        pecasBrancas.add(new Cavaleiro(5, 3, Cor.BRANCA));
-        pecasBrancas.add(new Mago(5, 5, Cor.BRANCA));
-        pecasBrancas.add(new Soldado(5, 7, Cor.BRANCA));
-        pecasBrancas.add(new Soldado(6, 0, Cor.BRANCA));
-        pecasBrancas.add(new Cavaleiro(6, 2, Cor.BRANCA));
-        pecasBrancas.add(new Mago(6, 4, Cor.BRANCA));
+        // vermelhas
+        pecasVermelhas.add(new Mago(0, 3, Cor.VERMELHA));
+        pecasVermelhas.add(new Mago(1, 4, Cor.VERMELHA));
+        pecasVermelhas.add(new Mago(2, 3, Cor.VERMELHA));
+        pecasVermelhas.add(new Cavaleiro(0, 0, Cor.VERMELHA));
+        pecasVermelhas.add(new Cavaleiro(1, 1, Cor.VERMELHA));
+        pecasVermelhas.add(new Cavaleiro(2, 0, Cor.VERMELHA));
+        pecasVermelhas.add(new Soldado(1, 7, Cor.VERMELHA));
+        pecasVermelhas.add(new Soldado(2, 6, Cor.VERMELHA));
+        pecasVermelhas.add(new Soldado(0, 6, Cor.VERMELHA));
+
+        pecasBrancas.add(new Mago(6, 3, Cor.BRANCA));
+        pecasBrancas.add(new Mago(5, 4, Cor.BRANCA));
+        pecasBrancas.add(new Mago(7, 4, Cor.BRANCA));
         pecasBrancas.add(new Soldado(6, 6, Cor.BRANCA));
-        pecasBrancas.add(new Soldado(7, 1, Cor.BRANCA));
-        pecasBrancas.add(new Cavaleiro(7, 3, Cor.BRANCA));
-        pecasBrancas.add(new Mago(7, 5, Cor.BRANCA));
+        pecasBrancas.add(new Soldado(5, 7, Cor.BRANCA));
         pecasBrancas.add(new Soldado(7, 7, Cor.BRANCA));
-
-        pecasPretas.add(new Soldado(0, 0, Cor.VERMELHA));
-        pecasPretas.add(new Cavaleiro(0, 2, Cor.VERMELHA));
-        pecasPretas.add(new Mago(0, 4, Cor.VERMELHA));
-        pecasPretas.add(new Soldado(0, 6, Cor.VERMELHA));
-        pecasPretas.add(new Soldado(1, 1, Cor.VERMELHA));
-        pecasPretas.add(new Cavaleiro(1, 3, Cor.VERMELHA));
-        pecasPretas.add(new Mago(1, 5, Cor.VERMELHA));
-        pecasPretas.add(new Soldado(1, 7, Cor.VERMELHA));
-        pecasPretas.add(new Soldado(2, 0, Cor.VERMELHA));
-        pecasPretas.add(new Cavaleiro(2, 2, Cor.VERMELHA));
-        pecasPretas.add(new Mago(2, 4, Cor.VERMELHA));
-        pecasPretas.add(new Soldado(2, 6, Cor.VERMELHA));
+        pecasBrancas.add(new Cavaleiro(5, 1, Cor.BRANCA));
+        pecasBrancas.add(new Cavaleiro(6, 0, Cor.BRANCA));
+        pecasBrancas.add(new Cavaleiro(7, 1, Cor.BRANCA));
 
         posicionarPecas(pecasBrancas);
-        posicionarPecas(pecasPretas);
+        posicionarPecas(pecasVermelhas);
     }
 
     private void posicionarPecas(List<Peca> pecas) {
