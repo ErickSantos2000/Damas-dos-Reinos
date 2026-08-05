@@ -4,6 +4,7 @@ import Peca.Peca;
 import Peca.Cor;
 import tabuleiro.Casa;
 import Peca.TipoPeca;
+import tabuleiro.Tabuleiro;
 
 public class Cavaleiro implements Peca {
     private int y, x;
@@ -29,7 +30,7 @@ public class Cavaleiro implements Peca {
     }
 
     @Override
-    public boolean podeCapturar(Casa origem, Casa destino){
+    public boolean podeCapturar(Casa origem, Casa destino, Tabuleiro tabuleiro){
         int dx = Math.abs(destino.getX() - origem.getX());
         int dy = Math.abs(destino.getY() - origem.getY());
 
@@ -39,7 +40,7 @@ public class Cavaleiro implements Peca {
     }
 
     @Override
-    public boolean podeMover(Casa origem, Casa destino) {
+    public boolean podeMover(Casa origem, Casa destino, Tabuleiro tabuleiro) {
         int dx = Math.abs(destino.getX() - origem.getX());
         int dy = Math.abs(destino.getY() - origem.getY());
 
@@ -51,6 +52,11 @@ public class Cavaleiro implements Peca {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public boolean promover(Casa destino, Tabuleiro tabuleiro){
+        return false;
     }
 
     public void setY(int y) {

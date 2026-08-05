@@ -3,6 +3,7 @@ package Peca.impl;
 import Peca.Cor;
 import Peca.TipoPeca;
 import tabuleiro.Casa;
+import tabuleiro.Tabuleiro;
 
 public class SoldadoReal extends Soldado {
 
@@ -20,7 +21,7 @@ public class SoldadoReal extends Soldado {
     }
 
     @Override
-    public boolean podeMover(Casa origem, Casa destino) {
+    public boolean podeMover(Casa origem, Casa destino, Tabuleiro tabuleiro) {
         int dx = destino.getX() - origem.getX();
         int dy = destino.getY() - origem.getY();
 
@@ -31,7 +32,7 @@ public class SoldadoReal extends Soldado {
     }
 
     @Override
-    public boolean podeCapturar(Casa origem, Casa destino) {
+    public boolean podeCapturar(Casa origem, Casa destino, Tabuleiro tabuleiro) {
         int dx = destino.getX() - origem.getX();
         int dy = destino.getY() - origem.getY();
 
@@ -39,7 +40,7 @@ public class SoldadoReal extends Soldado {
             return false;
         }
 
-        Casa meio = super.casaMeio(
+        Casa meio = tabuleiro.getCasa(
                 origem.getX() + dx / 2,
                 origem.getY() + dy / 2
         );

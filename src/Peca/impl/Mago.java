@@ -1,15 +1,14 @@
 package Peca.impl;
 
-import Peca.Peca;
 import Peca.Cor;
 import tabuleiro.Casa;
 import Peca.TipoPeca;
 import tabuleiro.Tabuleiro;
+import Peca.Peca;
 
 public class Mago implements Peca {
     private int y, x;
     private Cor cor;
-    private Tabuleiro tabuleiro;
 
     public Mago(int y, int x, Cor cor) {
         this.y = y;
@@ -31,7 +30,7 @@ public class Mago implements Peca {
     }
 
     @Override
-    public boolean podeCapturar(Casa origem, Casa destino) {
+    public boolean podeCapturar(Casa origem, Casa destino, Tabuleiro tabuleiro) {
         if (origem == null || destino == null || origem.equals(destino)) {
             return false;
         }
@@ -72,7 +71,7 @@ public class Mago implements Peca {
     }
 
     @Override
-    public boolean podeMover(Casa origem, Casa destino) {
+    public boolean podeMover(Casa origem, Casa destino, Tabuleiro tabuleiro) {
         if (origem == null || destino == null || origem.equals(destino)) {
             return false;
         }
@@ -104,14 +103,13 @@ public class Mago implements Peca {
         return destino.getPeca() == null;
     }
 
+    @Override
+    public boolean promover(Casa destino, Tabuleiro tabuleiro){
+        return false;
+    }
 
     public int getY() {
         return y;
-    }
-
-    @Override
-    public void setTabuleiro(Tabuleiro tabuleiro) {
-        this.tabuleiro = tabuleiro;
     }
 
     public void setY(int y) {

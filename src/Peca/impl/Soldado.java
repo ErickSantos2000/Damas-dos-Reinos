@@ -10,7 +10,6 @@ public class Soldado implements Peca {
 
     private int y, x;
     private Cor cor;
-    private Tabuleiro tabuleiro;
 
     public Soldado(int y, int x, Cor cor) {
         this.y = y;
@@ -32,7 +31,7 @@ public class Soldado implements Peca {
     }
 
     @Override
-    public boolean podeCapturar(Casa origem, Casa destino){
+    public boolean podeCapturar(Casa origem, Casa destino, Tabuleiro tabuleiro){
         int dx = destino.getX() - origem.getX();
         int dy = destino.getY() - origem.getY();
 
@@ -50,7 +49,7 @@ public class Soldado implements Peca {
     }
 
     @Override
-    public boolean podeMover(Casa origem, Casa destino) {
+    public boolean podeMover(Casa origem, Casa destino, Tabuleiro tabuleiro) {
         int dx = destino.getX() - origem.getX();
         int dy = destino.getY() - origem.getY();
 
@@ -61,12 +60,27 @@ public class Soldado implements Peca {
         return Math.abs(dx) == 1 && Math.abs(dy) == 1 && avancarParaFrente && destino.getPeca() == null;
     }
 
-    public Casa casaMeio(int x, int y){
-        return tabuleiro.getCasa(x, y);
-    }
-
     public int getY() {
         return y;
+    }
+
+    @Override
+    public boolean promover(Casa destino, Tabuleiro tabuleiro){
+        Peca peca = destino.getPeca();
+
+        if (peca == null || peca.getTipo() != TipoPeca.SOLDADO) {
+            return false;
+        }
+
+        boolean chegouAoFim = (peca.getCor() == Cor.BRANCA && destino.getX() == 0)
+                || (peca.getCor() == Cor.VERMELHA && destino.getX() == tabuleiro.getLinhas() - 1);
+
+        if (chegouAoFim) {
+            destino.colocarPeca(new SoldadoReal(destino.getY(), destino.getX(), peca.getCor()));
+            return true;
+        }
+
+        return false;
     }
 
     public void setY(int y) {
@@ -81,12 +95,4 @@ public class Soldado implements Peca {
         this.x = x;
     }
 
-    public Tabuleiro getTabuleiro() {
-        return tabuleiro;
-    }
-
-    @Override
-    public void setTabuleiro(Tabuleiro tabuleiro) {
-        this.tabuleiro = tabuleiro;
-    }
 }
