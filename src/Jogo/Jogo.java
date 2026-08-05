@@ -18,8 +18,8 @@ public class Jogo {
 
     public Jogo() {
         this.tabuleiro = new Tabuleiro(8, 8);
-        this.jogadorBranco = new Jogador("Reino Branco", 0);
-        this.jogadorVermelho = new Jogador("Reino Preto", 0);
+        this.jogadorBranco = new Jogador("jogador Branco", 0);
+        this.jogadorVermelho = new Jogador("jogador Vermelho", 0);
         this.gerenciadorTurno = new GerenciadorTurno(jogadorBranco, jogadorVermelho, jogadorBranco);
         this.capturaObrigatoria = false;
 

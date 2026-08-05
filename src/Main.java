@@ -12,31 +12,37 @@ public class Main {
         while (true) {
             tela.exibirTabuleiro(jogo.getTabuleiro());
 
-            System.out.println("\nVez de: "
-                    + jogo.getGerenciadorTurno().getVez().getNome());
-
-            System.out.println("Digite a jogada: linhaOrigem colunaOrigem linhaDestino colunaDestino");
-            System.out.println("Exemplo: 5 1 4 0");
-            System.out.println("Digite 'sair' para encerrar.");
-
-            String entrada = scanner.nextLine().trim();
-
-            if (entrada.equalsIgnoreCase("sair")) {
-                break;
-            }
-
-            String[] valores = entrada.split("\\s+");
-
-            if (valores.length != 4) {
-                System.out.println("Formato inválido. Digite quatro números.");
-                continue;
-            }
+            System.out.println("\nVez de: " + jogo.getGerenciadorTurno().getVez().getNome());
+            System.out.println("Informe as coordenadas passo a passo");
 
             try {
-                int linhaOrigem = Integer.parseInt(valores[0]);
-                int colunaOrigem = Integer.parseInt(valores[1]);
-                int linhaDestino = Integer.parseInt(valores[2]);
-                int colunaDestino = Integer.parseInt(valores[3]);
+                System.out.print("Linha de origem: ");
+                String entradaOrigem = scanner.nextLine().trim();
+                if (entradaOrigem.equalsIgnoreCase("sair")) {
+                    break;
+                }
+                int linhaOrigem = Integer.parseInt(entradaOrigem);
+
+                System.out.print("Coluna de origem: ");
+                String entradaColunaOrigem = scanner.nextLine().trim();
+                if (entradaColunaOrigem.equalsIgnoreCase("sair")) {
+                    break;
+                }
+                int colunaOrigem = Integer.parseInt(entradaColunaOrigem);
+
+                System.out.print("Linha de destino: ");
+                String entradaDestino = scanner.nextLine().trim();
+                if (entradaDestino.equalsIgnoreCase("sair")) {
+                    break;
+                }
+                int linhaDestino = Integer.parseInt(entradaDestino);
+
+                System.out.print("Coluna de destino: ");
+                String entradaColunaDestino = scanner.nextLine().trim();
+                if (entradaColunaDestino.equalsIgnoreCase("sair")) {
+                    break;
+                }
+                int colunaDestino = Integer.parseInt(entradaColunaDestino);
 
                 boolean movimentoValido = jogo.mover(
                         linhaOrigem,
@@ -49,7 +55,7 @@ public class Main {
                     System.out.println("Movimento inválido.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Use apenas números para as coordenadas.");
+                System.out.println("Use apenas números inteiros para as coordenadas.");
             }
         }
 
