@@ -1,5 +1,5 @@
 package Peca;
 
 public enum TipoPeca {
-    CAVALEIRO, SOLDADO, MAGO
+    CAVALEIRO, SOLDADO, SOLDADO_REAL, MAGO
 }

@@ -109,6 +109,11 @@ public class Mago implements Peca {
         return y;
     }
 
+    @Override
+    public void setTabuleiro(Tabuleiro tabuleiro) {
+        this.tabuleiro = tabuleiro;
+    }
+
     public void setY(int y) {
         this.y = y;
     }

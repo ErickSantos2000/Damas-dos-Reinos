@@ -8,10 +8,10 @@ import Peca.TipoPeca;
 import Peca.impl.Cavaleiro;
 import Peca.impl.Mago;
 import Peca.impl.Soldado;
+import Peca.impl.SoldadoReal;
 import tabuleiro.Casa;
 import tabuleiro.Tabuleiro;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,37 +73,19 @@ public class Jogo {
         pecasPretas.add(new Mago(2, 4, Cor.VERMELHA));
         pecasPretas.add(new Soldado(2, 6, Cor.VERMELHA));
 
-        for (Peca peca : pecasBrancas) {
-            vincularTabuleiro(peca);
-            localizarCasa(peca).colocarPeca(peca);
-        }
+        posicionarPecas(pecasBrancas);
+        posicionarPecas(pecasPretas);
+    }
 
-        for (Peca peca : pecasPretas) {
+    private void posicionarPecas(List<Peca> pecas) {
+        for (Peca peca : pecas) {
             vincularTabuleiro(peca);
-            localizarCasa(peca).colocarPeca(peca);
+            tabuleiro.getCasa(peca.getY(), peca.getX()).colocarPeca(peca);
         }
     }
 
     private void vincularTabuleiro(Peca peca) {
-        try {
-            Field field = peca.getClass().getDeclaredField("tabuleiro");
-            field.setAccessible(true);
-            field.set(peca, tabuleiro);
-        } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Não foi possível vincular o tabuleiro à peça: " + peca.getClass().getSimpleName(), e);
-        }
-    }
-
-    private Casa localizarCasa(Peca peca) {
-        for (int linha = 0; linha < tabuleiro.getLinhas(); linha++) {
-            for (int coluna = 0; coluna < tabuleiro.getColunas(); coluna++) {
-                Casa casa = tabuleiro.getCasa(linha, coluna);
-                if (casa.getPeca() == peca) {
-                    return casa;
-                }
-            }
-        }
-        throw new IllegalArgumentException("Peça não localizada no tabuleiro");
+        peca.setTabuleiro(tabuleiro);
     }
 
     public boolean mover(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
@@ -129,23 +111,49 @@ public class Jogo {
             return false;
         }
 
-        boolean movimentoValido;
-
-        if (destino.getPeca() == null) {
-            movimentoValido = peca.podeMover(origem, destino);
-        } else {
-            movimentoValido = peca.podeCapturar(origem, destino);
-        }
+        boolean destinoVazio = destino.getPeca() == null;
+        boolean capturaPorSalto = destinoVazio && peca.podeCapturar(origem, destino);
+        boolean movimentoValido = destinoVazio
+                ? peca.podeMover(origem, destino) || capturaPorSalto
+                : peca.podeCapturar(origem, destino);
 
         if (!movimentoValido) {
             return false;
         }
 
+        if (capturaPorSalto) {
+            removerPecaCapturadaNoSalto(origem, destino);
+        }
+
         origem.removerPeca();
         destino.colocarPeca(peca);
+        promoverSoldadoSeNecessario(destino);
         gerenciadorTurno.mudarTurno();
         verificarEstadoDoJogo();
         return true;
+    }
+
+    private void removerPecaCapturadaNoSalto(Casa origem, Casa destino) {
+        int meioX = origem.getX() + (destino.getX() - origem.getX()) / 2;
+        int meioY = origem.getY() + (destino.getY() - origem.getY()) / 2;
+        tabuleiro.getCasa(meioX, meioY).removerPeca();
+    }
+
+    private void promoverSoldadoSeNecessario(Casa destino) {
+        Peca peca = destino.getPeca();
+
+        if (peca == null || peca.getTipo() != TipoPeca.SOLDADO) {
+            return;
+        }
+
+        boolean chegouAoFim = (peca.getCor() == Cor.BRANCA && destino.getX() == 0)
+                || (peca.getCor() == Cor.VERMELHA && destino.getX() == tabuleiro.getLinhas() - 1);
+
+        if (chegouAoFim) {
+            SoldadoReal soldadoReal = new SoldadoReal(destino.getY(), destino.getX(), peca.getCor());
+            vincularTabuleiro(soldadoReal);
+            destino.colocarPeca(soldadoReal);
+        }
     }
 
     private void verificarEstadoDoJogo() {

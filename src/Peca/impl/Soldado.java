@@ -36,8 +36,8 @@ public class Soldado implements Peca {
         int dx = destino.getX() - origem.getX();
         int dy = destino.getY() - origem.getY();
 
-        boolean avancarParaFrente = (cor == Cor.BRANCA && dy == 2) ||
-                                    (cor == Cor.VERMELHA && dy == -2);
+        boolean avancarParaFrente = (cor == Cor.BRANCA && dx == -2) ||
+                                    (cor == Cor.VERMELHA && dx == 2);
 
 
         int meioX = origem.getX() + (dx / 2);
@@ -55,10 +55,14 @@ public class Soldado implements Peca {
         int dy = destino.getY() - origem.getY();
 
         boolean avancarParaFrente =
-                (cor == Cor.BRANCA && dy == 1) ||
-                        (cor == Cor.VERMELHA && dy == -1);
+                (cor == Cor.BRANCA && dx == -1) ||
+                        (cor == Cor.VERMELHA && dx == 1);
 
         return Math.abs(dx) == 1 && Math.abs(dy) == 1 && avancarParaFrente && destino.getPeca() == null;
+    }
+
+    public Casa casaMeio(int x, int y){
+        return tabuleiro.getCasa(x, y);
     }
 
     public int getY() {
@@ -75,5 +79,14 @@ public class Soldado implements Peca {
 
     public void setX(int x) {
         this.x = x;
+    }
+
+    public Tabuleiro getTabuleiro() {
+        return tabuleiro;
+    }
+
+    @Override
+    public void setTabuleiro(Tabuleiro tabuleiro) {
+        this.tabuleiro = tabuleiro;
     }
 }
