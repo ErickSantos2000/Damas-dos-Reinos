@@ -34,7 +34,7 @@ public class ExibirTabuleiro {
       private String obterEmoji(Peca peca) {
           switch (peca.getTipo()) {
               case SOLDADO:
-                  return peca.getCor() == Cor.BRANCA ? "⚪" : "🔴";
+                  return peca.getCor() == Cor.BRANCA ? "⚪" : "⚫";
 
               case SOLDADO_REAL:
                   return peca.getCor() == Cor.BRANCA ? "👑" : "⚜️";
