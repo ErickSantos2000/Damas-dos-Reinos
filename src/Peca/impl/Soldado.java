@@ -36,7 +36,7 @@ public class Soldado implements Peca {
         int dy = destino.getY() - origem.getY();
 
         boolean avancarParaFrente = (cor == Cor.BRANCA && dx == -2) ||
-                                    (cor == Cor.VERMELHA && dx == 2);
+                                    (cor == Cor.PRETA && dx == 2);
 
 
         int meioX = origem.getX() + (dx / 2);
@@ -55,7 +55,7 @@ public class Soldado implements Peca {
 
         boolean avancarParaFrente =
                 (cor == Cor.BRANCA && dx == -1) ||
-                        (cor == Cor.VERMELHA && dx == 1);
+                        (cor == Cor.PRETA && dx == 1);
 
         return Math.abs(dx) == 1 && Math.abs(dy) == 1 && avancarParaFrente && destino.getPeca() == null;
     }
@@ -73,7 +73,7 @@ public class Soldado implements Peca {
         }
 
         boolean chegouAoFim = (peca.getCor() == Cor.BRANCA && destino.getX() == 0)
-                || (peca.getCor() == Cor.VERMELHA && destino.getX() == tabuleiro.getLinhas() - 1);
+                || (peca.getCor() == Cor.PRETA && destino.getX() == tabuleiro.getLinhas() - 1);
 
         if (chegouAoFim) {
             destino.colocarPeca(new SoldadoReal(destino.getY(), destino.getX(), peca.getCor()));

@@ -43,31 +43,41 @@ public class Tabuleiro {
 
     private void inicializarPecas() {
         List<Peca> pecasBrancas = new ArrayList<>();
-        List<Peca> pecasVermelhas = new ArrayList<>();
+        List<Peca> pecasPretas = new ArrayList<>();
 
-        // vermelhas
-        pecasVermelhas.add(new Mago(0, 3, Cor.VERMELHA));
-        pecasVermelhas.add(new Mago(1, 4, Cor.VERMELHA));
-        pecasVermelhas.add(new Mago(2, 3, Cor.VERMELHA));
-        pecasVermelhas.add(new Cavaleiro(0, 0, Cor.VERMELHA));
-        pecasVermelhas.add(new Cavaleiro(1, 1, Cor.VERMELHA));
-        pecasVermelhas.add(new Cavaleiro(2, 0, Cor.VERMELHA));
-        pecasVermelhas.add(new Soldado(1, 7, Cor.VERMELHA));
-        pecasVermelhas.add(new Soldado(2, 6, Cor.VERMELHA));
-        pecasVermelhas.add(new Soldado(0, 6, Cor.VERMELHA));
+        // Todas as peças começam nas casas escuras das três primeiras fileiras.
+        pecasPretas.add(new Mago(0, 1, Cor.PRETA));
+        pecasPretas.add(new Mago(0, 3, Cor.PRETA));
+        pecasPretas.add(new Mago(0, 5, Cor.PRETA));
+        pecasPretas.add(new Mago(0, 7, Cor.PRETA));
 
-        pecasBrancas.add(new Mago(6, 3, Cor.BRANCA));
+        pecasPretas.add(new Cavaleiro(1, 0, Cor.PRETA));
+        pecasPretas.add(new Cavaleiro(1, 2, Cor.PRETA));
+        pecasPretas.add(new Cavaleiro(1, 4, Cor.PRETA));
+        pecasPretas.add(new Cavaleiro(1, 6, Cor.PRETA));
+
+        pecasPretas.add(new Soldado(2, 1, Cor.PRETA));
+        pecasPretas.add(new Soldado(2, 3, Cor.PRETA));
+        pecasPretas.add(new Soldado(2, 5, Cor.PRETA));
+        pecasPretas.add(new Soldado(2, 7, Cor.PRETA));
+
+        pecasBrancas.add(new Mago(5, 0, Cor.BRANCA));
+        pecasBrancas.add(new Mago(5, 2, Cor.BRANCA));
         pecasBrancas.add(new Mago(5, 4, Cor.BRANCA));
-        pecasBrancas.add(new Mago(7, 4, Cor.BRANCA));
-        pecasBrancas.add(new Soldado(6, 6, Cor.BRANCA));
-        pecasBrancas.add(new Soldado(5, 7, Cor.BRANCA));
-        pecasBrancas.add(new Soldado(7, 7, Cor.BRANCA));
-        pecasBrancas.add(new Cavaleiro(5, 1, Cor.BRANCA));
-        pecasBrancas.add(new Cavaleiro(6, 0, Cor.BRANCA));
-        pecasBrancas.add(new Cavaleiro(7, 1, Cor.BRANCA));
+        pecasBrancas.add(new Mago(5, 6, Cor.BRANCA));
+
+        pecasBrancas.add(new Soldado(6, 1, Cor.BRANCA));
+        pecasBrancas.add(new Soldado(6, 3, Cor.BRANCA));
+        pecasBrancas.add(new Soldado(6, 5, Cor.BRANCA));
+        pecasBrancas.add(new Soldado(6, 7, Cor.BRANCA));
+
+        pecasBrancas.add(new Cavaleiro(7, 0, Cor.BRANCA));
+        pecasBrancas.add(new Cavaleiro(7, 2, Cor.BRANCA));
+        pecasBrancas.add(new Cavaleiro(7, 4, Cor.BRANCA));
+        pecasBrancas.add(new Cavaleiro(7, 6, Cor.BRANCA));
 
         posicionarPecas(pecasBrancas);
-        posicionarPecas(pecasVermelhas);
+        posicionarPecas(pecasPretas);
     }
 
     private void posicionarPecas(List<Peca> pecas) {
@@ -75,8 +85,6 @@ public class Tabuleiro {
             this.getCasa(peca.getY(), peca.getX()).colocarPeca(peca);
         }
     }
-
-
 
     // Getters
     public Casa[][] getCasas() {
