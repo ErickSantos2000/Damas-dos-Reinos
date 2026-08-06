@@ -1,13 +1,9 @@
-package tabuleiro;
+package com.padroes.damas.tabuleiro;
 
-import Peca.Cor;
-import Peca.Peca;
-import Peca.TipoPeca;
-import tabuleiro.Casa;
-import tabuleiro.Tabuleiro;
+import com.padroes.damas.Peca.Cor;
+import com.padroes.damas.Peca.Peca;
 
-
-  public class ExibirTabuleiro {
+public class ExibirTabuleiro {
 
       public void exibirTabuleiro(Tabuleiro tabuleiro) {
           System.out.println();

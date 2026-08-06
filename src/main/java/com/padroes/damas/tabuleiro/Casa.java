@@ -1,7 +1,7 @@
-package tabuleiro;
+package com.padroes.damas.tabuleiro;
 
-import Peca.Peca;
-import Peca.Cor;
+import com.padroes.damas.Peca.Peca;
+import com.padroes.damas.Peca.Cor;
 
 public class Casa {
     private String cor;

@@ -1,4 +1,4 @@
-package Jogador;
+package com.padroes.damas.Jogador;
 
 public class GerenciadorTurno {
     private Jogador jogador1;

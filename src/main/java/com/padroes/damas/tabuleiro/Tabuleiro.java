@@ -1,10 +1,10 @@
-package tabuleiro;
+package com.padroes.damas.tabuleiro;
 
-import Peca.Peca;
-import Peca.Cor;
-import Peca.impl.Cavaleiro;
-import Peca.impl.Mago;
-import Peca.impl.Soldado;
+import com.padroes.damas.Peca.Peca;
+import com.padroes.damas.Peca.Cor;
+import com.padroes.damas.Peca.impl.Cavaleiro;
+import com.padroes.damas.Peca.impl.Mago;
+import com.padroes.damas.Peca.impl.Soldado;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Tabuleiro {
     private int linhas;
     private int colunas;
 
-    // construtor que inicializa o tabuleiro com um tamanho padrão 8x8
+    // construtor que inicializa o com.padroes.damas.tabuleiro com um tamanho padrão 8x8
     public Tabuleiro(int linhas, int colunas) {
         this.linhas = linhas;
         this.colunas = colunas;
@@ -23,7 +23,7 @@ public class Tabuleiro {
         inicializarPecas();
     }
 
-    // metodo para criar e posicionar as casas no tabuleiro
+    // metodo para criar e posicionar as casas no com.padroes.damas.tabuleiro
     public void inicializarCasas() {
         for (int linha = 0; linha < this.getLinhas(); linha++) {
             for (int coluna = 0; coluna < this.getColunas(); coluna++) {
@@ -38,7 +38,7 @@ public class Tabuleiro {
         if (linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas) {
             return casas[linha][coluna];
         }
-        throw new IndexOutOfBoundsException("Posição inválida no tabuleiro!");
+        throw new IndexOutOfBoundsException("Posição inválida no com.padroes.damas.tabuleiro!");
     }
 
     private void inicializarPecas() {

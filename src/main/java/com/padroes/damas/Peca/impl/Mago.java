@@ -1,10 +1,10 @@
-package Peca.impl;
+package com.padroes.damas.Peca.impl;
 
-import Peca.Cor;
-import tabuleiro.Casa;
-import Peca.TipoPeca;
-import tabuleiro.Tabuleiro;
-import Peca.Peca;
+import com.padroes.damas.Peca.Cor;
+import com.padroes.damas.tabuleiro.Casa;
+import com.padroes.damas.Peca.TipoPeca;
+import com.padroes.damas.tabuleiro.Tabuleiro;
+import com.padroes.damas.Peca.Peca;
 
 public class Mago implements Peca {
     private int y, x;

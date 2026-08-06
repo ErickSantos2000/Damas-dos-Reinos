@@ -1,5 +1,7 @@
-import Jogo.Jogo;
-import tabuleiro.ExibirTabuleiro;
+package com.padroes.damas;
+
+import com.padroes.damas.Jogo.Jogo;
+import com.padroes.damas.tabuleiro.ExibirTabuleiro;
 import java.util.Scanner;
 
 public class Menu {
@@ -29,7 +31,7 @@ public class Menu {
             System.out.println("Vitória de " + jogo.getVencedor().getNome()
                     + ": " + jogo.getMotivoEncerramento() + ".");
         } else {
-            System.out.println("Jogo encerrado.");
+            System.out.println("main.java.com.padroes.damas.Jogo encerrado.");
         }
     }
 

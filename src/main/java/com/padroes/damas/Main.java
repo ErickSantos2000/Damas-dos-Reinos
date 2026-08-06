@@ -1,5 +1,7 @@
-import Jogo.Jogo;
-import tabuleiro.ExibirTabuleiro;
+package com.padroes.damas;
+
+import com.padroes.damas.Jogo.Jogo;
+import com.padroes.damas.tabuleiro.ExibirTabuleiro;
 
 import java.util.Scanner;
 

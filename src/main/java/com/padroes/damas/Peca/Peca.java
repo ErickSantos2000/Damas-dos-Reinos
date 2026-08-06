@@ -1,11 +1,11 @@
-package Peca;
+package com.padroes.damas.Peca;
 
-import tabuleiro.Casa;
-import tabuleiro.Tabuleiro;
+import com.padroes.damas.tabuleiro.Casa;
+import com.padroes.damas.tabuleiro.Tabuleiro;
 
 public interface Peca {
     Cor getCor();
-    TipoPeca  getTipo();
+    TipoPeca getTipo();
 
     // metodo que contem as regras de movimentação para cada uma da implementações
     boolean podeMover(Casa origem, Casa destino, Tabuleiro tabuleiro);

@@ -1,12 +1,12 @@
-package Jogo;
+package com.padroes.damas.Jogo;
 
-import Jogador.GerenciadorTurno;
-import Jogador.Jogador;
-import Peca.Cor;
-import Peca.Peca;
-import Peca.TipoPeca;
-import tabuleiro.Casa;
-import tabuleiro.Tabuleiro;
+import com.padroes.damas.Jogador.GerenciadorTurno;
+import com.padroes.damas.Jogador.Jogador;
+import com.padroes.damas.Peca.Cor;
+import com.padroes.damas.Peca.Peca;
+import com.padroes.damas.Peca.TipoPeca;
+import com.padroes.damas.tabuleiro.Casa;
+import com.padroes.damas.tabuleiro.Tabuleiro;
 
 public class Jogo {
     private final Tabuleiro tabuleiro;
@@ -29,7 +29,7 @@ public class Jogo {
 
     public boolean mover(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
         if (encerrado) return false;
-        Casa origem;
+        Casa origem = tabuleiro.getCasa(linhaOrigem, colunaOrigem);
         Casa destino;
 
         origem = tabuleiro.getCasa(linhaOrigem, colunaOrigem);

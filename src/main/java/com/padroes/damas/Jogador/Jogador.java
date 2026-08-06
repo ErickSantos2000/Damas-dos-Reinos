@@ -1,4 +1,4 @@
-package Jogador;
+package com.padroes.damas.Jogador;
 
 public class Jogador {
     private String nome;

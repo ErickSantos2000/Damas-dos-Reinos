@@ -1,9 +1,9 @@
-package Peca.impl;
+package com.padroes.damas.Peca.impl;
 
-import Peca.Cor;
-import Peca.TipoPeca;
-import tabuleiro.Casa;
-import tabuleiro.Tabuleiro;
+import com.padroes.damas.Peca.Cor;
+import com.padroes.damas.Peca.TipoPeca;
+import com.padroes.damas.tabuleiro.Casa;
+import com.padroes.damas.tabuleiro.Tabuleiro;
 
 public class SoldadoReal extends Soldado {
 
