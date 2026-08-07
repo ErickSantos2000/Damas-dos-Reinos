@@ -30,11 +30,7 @@ public class Jogo {
     public boolean mover(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
         if (encerrado) return false;
         Casa origem = tabuleiro.getCasa(linhaOrigem, colunaOrigem);
-        Casa destino;
-
-        origem = tabuleiro.getCasa(linhaOrigem, colunaOrigem);
-        destino = tabuleiro.getCasa(linhaDestino, colunaDestino);
-
+        Casa destino = tabuleiro.getCasa(linhaDestino, colunaDestino);
 
         if (origem.getPeca() == null) return false;
 
